@@ -1,0 +1,46 @@
+package kkkk;
+
+public class EJERCICIOCAMINO {
+	public static void main(String[] args) {
+		        String mensajeCifrado = "Lpkpmtjzm";
+		        int desplazamiento = 8; // 
+		        
+		        String mensajeDescifrado = descifrarMensaje(mensajeCifrado, desplazamiento);
+		        System.out.println("Mensaje descifrado: " + mensajeDescifrado);
+		    }
+		    
+		    public static String descifrarMensaje(String mensajeCifrado, int desplazamiento) {
+		        StringBuilder mensajeDescifrado = new StringBuilder();
+		        for (int i = 0; i < mensajeCifrado.length(); i++) {
+		            char caracter = mensajeCifrado.charAt(i);
+		          
+		            if (Character.isLetter(caracter)) {
+		                char nuevoCaracter = descifrarCaracter(caracter, desplazamiento);
+		                mensajeDescifrado.append(nuevoCaracter);
+		            } else {
+		            
+		                mensajeDescifrado.append(caracter);
+		            }
+		        }
+		        return mensajeDescifrado.toString();
+		    }
+		    
+		    public static char descifrarCaracter(char caracter, int desplazamiento) {
+		       
+		        String alfabeto = "abcdefghijklmnñopqrstuvwxyz";
+		       
+		        char base = Character.isUpperCase(caracter) ? 'A' : 'a';
+		  
+		        int indice = alfabeto.indexOf(Character.toLowerCase(caracter));
+		       
+		        int nuevoIndice = (indice - desplazamiento) % alfabeto.length();
+		       
+		        if (nuevoIndice < 0) {
+		            nuevoIndice += alfabeto.length();
+		        }
+		       
+		        char caracterDescifrado = alfabeto.charAt(nuevoIndice);
+		     
+		        return Character.isUpperCase(caracter) ? Character.toUpperCase(caracterDescifrado) : caracterDescifrado;
+		    }
+		}
